@@ -8,18 +8,59 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 
-			crearUsuario: (userData) => { // Acepta datos del usuario  que contiene la información necesaria para crear un usuario (como email, password, etc.).
-				fetch(`${BACKEND_URL}/signup`, {
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json"
-					},
-					body: JSON.stringify(userData) // Enviar los datos del usuario
-				})
-				.then(response => response.json())
-				.then(data => console.log("Usuario creado:", data))
-				.catch(error => console.log("Error al crear el usuario: ", error));
-			},
+			crearUsuario: async (userData) => { // Usamos async para poder usar await dentro de esta función
+                try {
+                    const response = await fetch(`${BACKEND_URL}/signup`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(userData) // Enviar los datos del usuario
+                    });
+            
+                    if (response.ok) {
+                        const data = await response.json();
+                        console.log("Usuario creado:", data);
+                        return true; // Registro exitoso
+                    } else {
+                        console.error("Error al crear el usuario");
+                        return false; // Registro fallido
+                    }
+                } catch (error) {
+                    console.error("Error al crear el usuario:", error);
+                    return false; // Registro fallido
+                }
+            },
+
+
+            login: async (email, password) => { //esta solicitud al servidor puede ser que tarde, por eso quiero que sea asyncronica, que espere a que termine antes de seguir.
+                try {
+                    const response = await fetch(`${BACKEND_URL}/login`, { // await se usa para decir "espera aquí hasta que esta tarea termine"
+                        method: "POST",
+                        body: JSON.stringify({ email, password }), //convierte nuestro correo y contraseña en un formato que el servidor puede entender.
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
+                    });
+            
+                    if (response.ok) {
+                        const data = await response.json(); //convierte la respuesta del servidor en un formato que podamos usar (en este caso, un objeto con la información del usuario).
+                        if (data.token) { // revisa si el servidor nos dio un token. Si sí, eso significa que el inicio de sesión fue exitoso.
+                            localStorage.setItem("token", data.token); // Guardar token en localStorage
+                            setStore({ token: data.token });
+                            setStore({ user: data.user }); // Opcional: almacenar información del usuario
+                            return true; // Login exitoso
+                        }
+                    } else {
+                        console.error("Error al iniciar sesión");
+                        return false; // Login fallido
+                    }
+                } catch (error) { //es como una red de seguridad. Si algo sale mal (por ejemplo, si el servidor no responde)
+                    console.error("Error del servidor:", error);
+                    return false; // Login fallido
+                }
+            },            
+
 			
 
 			obtenerTareas: () => {
@@ -92,24 +133,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
 
 
-			login: (email, password) => {
-                fetch(`${BACKEND_URL}/login`, {
-                    method: "POST",
-                    body: JSON.stringify({ email, password }),
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.token) {
-                        localStorage.setItem("token", data.token); // Guardar token en localStorage
-                        setStore({ token: data.token });
-                        setStore({ user: data.user }); // También se puede almacenar la información del usuario si es necesario
-                    }
-                })
-                .catch(error => console.log("Error al iniciar sesión: ", error));
-            }
+			
 
 			
 		}
