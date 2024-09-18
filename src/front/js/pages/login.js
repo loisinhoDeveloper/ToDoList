@@ -1,7 +1,7 @@
 //Estas funciones enviarán las solicitudes al backend (que se gestiona con Flask en routes.py y models.py), usando fetch para comunicarnos con la API.
 
 import React, { useState, useContext } from 'react';
-import { Context } from '../store/flux';  // Importamos el contexto global
+import { Context } from '../store/appContext'; // Importamos el contexto global
 import { useNavigate } from 'react-router-dom'; // Importamos el hook useNavigate para la redirección
 import "../../styles/login.css";
 
@@ -28,23 +28,32 @@ const Login = () => {
     return (
         <div className="loginContainer">
             <form className="formularioLogin" onSubmit={handleLogin}>
-                <h2>Iniciar Sesión</h2>
-                <input 
-                    type="email" 
-                    placeholder="Correo electrónico" 
-                    value={email} 
-                    onChange={(e) => setEmail(e.target.value)} 
-                    required 
-                />
-                <input 
-                    type="password" 
-                    placeholder="Contraseña" 
-                    value={password} 
-                    onChange={(e) => setPassword(e.target.value)} 
-                    required 
-                />
-                <button className='buttonLogin' type="submit">Login</button>
+                <h2 className="login-titulo">Iniciar Sesión</h2>
+                <div className="input-login">
+                    <i className="fa fa-envelope"></i> 
+                    <input 
+                        type="email" 
+                        placeholder="Correo electrónico" 
+                        value={email} 
+                        onChange={(e) => setEmail(e.target.value)} 
+                        required 
+                    />
+                </div>
+                <div className="input-login">
+                    <i className="fa fa-lock"></i>
+                    <input 
+                        type="password" 
+                        placeholder="Contraseña" 
+                        value={password} 
+                        onChange={(e) => setPassword(e.target.value)} 
+                        required 
+                    />
+                </div>
+                <button className="buttonLogin" type="submit">Login</button>
             </form>
+            <p className="remember-forgot-box">
+                ¿No tienes una cuenta? <a href="/signup">Registrarse</a>
+            </p>
         </div>
     );
 };

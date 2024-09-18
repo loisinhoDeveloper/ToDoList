@@ -7,31 +7,31 @@
     justify-content: center; /* Centra el contenido horizontalmente */
 }
 
-/* Estilo del contenedor del formulario de login */
-.loginContainer {
+/* Estilo del contenedor del formulario de registro */
+.ContenedorRegistro {
     margin-top: 250px;
-    background: rgba(247, 107, 107, 0.3); /* Fondo semi-transparente del color #4fcdc5 */
+    background: rgba(0, 0, 0, 0.1); /* Fondo semi-transparente para el contenedor del registro */
     width: 320px; /* Ancho fijo del contenedor */
     padding: 24px; /* Espaciado interno */
     border-radius: 16px; /* Bordes redondeados */
     border: solid 5px rgba(255, 255, 255, 0.1); /* Borde con color blanco semi-transparente */
     backdrop-filter: blur(25px); /* Desenfoque de fondo detrás del contenedor */
-    box-shadow: 0px 0px 30px 20px rgba(79, 205, 197, 0.5); /* Sombra para darle profundidad */
+    box-shadow: 0px 0px 30px 20px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
     color: white; /* Color del texto dentro del contenedor */
     display: flex; /* Usa flexbox para alinear elementos internos */
     flex-direction: column; /* Alinea los elementos en una columna */
     align-items: center; /* Centra los elementos horizontalmente */
-    justify-content: center; /* Centra el contenido horizontalmente */
+   
 }
 
-/* Estilo del título en el formulario de login */
-.formularioLogin h2 {
+/* Estilo del título en el formulario de registro */
+.formularioRegistro h2 {
     margin-bottom: 16px; /* Espaciado debajo del título */
     font-size: 24px; /* Tamaño de fuente del título */
 }
 
 /* Estilo del contenedor de los inputs */
-.input-login {
+.input-registro {
     display: flex; /* Usa flexbox para alinear los inputs */
     width: 100%; /* Asegura que el contenedor de los inputs cubra todo el ancho disponible */
     position: relative; /* Posiciona el icono en relación al input */
@@ -39,7 +39,7 @@
 }
 
 /* Estilo de los inputs */
-.input-login input {
+.input-registro input {
     width: 100%; /* Asegura que el input cubra todo el ancho disponible */
     padding: 10px 16px 10px 38px; /* Espaciado interno del input (espacio adicional a la izquierda para el icono) */
     border-radius: 99px; /* Bordes redondeados del input */
@@ -53,17 +53,17 @@
 }
 
 /* Estilo de los inputs al hacer foco */
-.input-login input:focus {
+.input-registro input:focus {
     border: solid 3px rgba(255, 255, 255, 0.25); /* Cambia el borde al hacer foco */
 }
 
 /* Estilo del placeholder del input */
-.input-login input::placeholder {
+.input-registro input::placeholder {
     color: rgba(255, 255, 255, 0.75); /* Color del texto del placeholder */
 }
 
 /* Icono dentro del input */
-.input-login i {
+.input-registro i {
     position: absolute; /* Posiciona el icono de forma absoluta dentro del contenedor */
     top: 50%; /* Centra verticalmente el icono */
     transform: translateY(-50%); /* Ajusta la posición vertical del icono para centrarlo */
@@ -74,31 +74,29 @@
 }
 
 /* Estilo del icono al hacer foco en el input */
-.input-login input:focus + i {
+.input-registro input:focus + i {
     color: white; /* Cambia el color del icono al hacer foco en el input */
 }
 
-/* Estilo de la caja para recordar y olvidar contraseña */
-.tienesCuenta {
-    display: flex; /* Usa flexbox para alinear los elementos */
-    width: 100%; /* Asegura que el contenedor cubra todo el ancho disponible */
-    margin-top: 16px; /* Espaciado arriba del contenedor */
-    justify-content: space-between; /* Espacia los elementos en los extremos del contenedor */
+/* Estilo del enlace a la página de login */
+.enlaceLogin {
+    margin-top: 16px; /* Espaciado arriba del enlace */
+    color: white; /* Color del texto del enlace */
+    text-align: center; /* Centra el texto del enlace */
 }
 
-/* Estilo de los textos en la caja de recordar y olvidar */
-.tienesCuenta h5 {
-    font-weight: normal; /* Grosor de la fuente del texto */
+/* Estilo del enlace en el texto */
+.enlaceLogin a {
+    color: #0066cc; /* Color del enlace */
+    text-decoration: none; /* Elimina el subrayado del enlace */
 }
 
-/* Estilo de la opción de recordar contraseña */
-.remember-me {
-    display: flex; /* Usa flexbox para alinear los elementos */
-    gap: 8px; /* Espaciado entre los elementos dentro del contenedor */
+.enlaceLogin a:hover {
+    text-decoration: underline; /* Añade subrayado al pasar el ratón sobre el enlace */
 }
 
-/* Estilo del botón de login */
-.buttonLogin {
+/* Estilo del botón de registro */
+.botonRegistro {
     padding: 10px; /* Espaciado interno del botón */
     border: none; /* Elimina el borde del botón */
     border-radius: 4px; /* Bordes redondeados del botón */
@@ -109,15 +107,15 @@
     transition: background-color 0.3s; /* Tiempo de transición para cambios en el color de fondo */
 }
 
-/* Estilo del botón de login al pasar el ratón sobre él */
-.buttonLogin:hover {
+/* Estilo del botón de registro al pasar el ratón sobre él */
+.botonRegistro:hover {
     background-color: #004d99; /* Cambia el color de fondo al pasar el ratón sobre el botón */
 }
 
 /* Responsive */
 @media (max-width: 600px) {
-    .loginContainer {
-        width: 100%; /* Asegura que el contenedor de login cubra todo el ancho en pantallas pequeñas */
+    .ContenedorRegistro {
+        width: 100%; /* Asegura que el contenedor de registro cubra todo el ancho en pantallas pequeñas */
         padding: 15px; /* Reduce el espaciado interno en pantallas pequeñas */
     }
 }

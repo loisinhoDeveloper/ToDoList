@@ -8,9 +8,6 @@ import os
 api = Blueprint('api', __name__)
 
 
-
-
-
 @api.route('/signup', methods=['POST'])
 def sign_up():
     data = request.json
